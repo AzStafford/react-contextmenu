@@ -98,7 +98,9 @@ export default class ContextMenuTrigger extends Component {
         if (this.props.disable) return;
         if (this.props.disableIfShiftIsPressed && event.shiftKey) return;
 
-        event.preventDefault();
+        if (event.cancelable) {
+            event.preventDefault();
+        }
         event.stopPropagation();
 
         let x = event.clientX || (event.touches && event.touches[0].pageX);
